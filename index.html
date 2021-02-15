@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/styles/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="js/moment.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <section id="route">
+        <div class="container text-center" id="route_content">
+            <img id="cruiseship" src="assets/img/cruiseship.png" alt="Теплоходные экскурсии в Санкт-Петербурге">
+            <div id="form_block">
+                <form id="timezone_form">
+                    <div class="form-group">
+                        <label for="timezone">Выберите свой часовой пояс</label>
+                        <select class="form-control" name="timezone" id="timezone">
+                            <option value="-1">Калининград (UTC+2)</option>
+                            <option value="0">Москва (UTC+3)</option>
+                            <option value="1">Самара (UTC+4)</option>
+                            <option value="2">Екатеринбург (UTC+5)</option>
+                            <option value="3">Омск (UTC+6)</option>
+                            <option value="4">Красноярск (UTC+7)</option>
+                            <option value="5">Иркутск (UTC+8)</option>
+                            <option value="6">Якутск (UTC+9)</option>
+                            <option value="7">Владивосток (UTC+10)</option>
+                            <option value="8">Магадан (UTC+11)</option>
+                            <option value="9">Петропавловск-Камчатский (UTC+12)</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary" id="continue_btn">Продолжить</button>
+                    </div>
+                </form>
+                <form id="calc_form">
+                    <div class="form-group">
+                        <label for="route_points">Выберите направление:</label>
+                        <select class="form-control" name="route_points" id="route_points">
+                            <option data-price="700" value="из A в B">"из A в B" (700 р.)</option>
+                            <option data-price="700" value="из B в A">"из B в A" (700 р.)</option>
+                            <option data-price="1200" value="из A в B и обратно">"из A в B и обратно" (1200 р.)</option>
+                            <option data-price="1200" value="из B в A и обратно">"из B в A и обратно" (1200 р.)</option>
+                        </select>
+                        <p><b>Время следования теплохода в одну строну - 50 минут. Обратите на это внимание, если вы планируете обратный маршрут.</b></p> 
+                        <div class="row">
+                            <div class="col">
+                                <label for="route_time_1" id="route_time_1_label">Выберите время отплытия из А в B:</label>
+                                <select class="form-control" id="route_time_1">
+                                    <option value="2021-08-21 18:00:00">18:00</option>
+                                    <option value="2021-08-21 18:30:00">18:30</option>
+                                    <option value="2021-08-21 18:45:00">18:45</option>
+                                    <option value="2021-08-21 19:00:00">19:00</option>
+                                    <option value="2021-08-21 19:15:00">19:15</option>
+                                    <option value="2021-08-21 21:00:00">21:00</option>
+                                </select>
+                                <label for="route_time_2" id="route_time_2_label">Выберите время отплытия из B в A:</label>
+                                <select class="form-control" id="route_time_2">
+                                    <option value="2021-08-21 18:30:00">18:30</option>
+                                    <option value="2021-08-21 18:45:00">18:45</option>
+                                    <option value="2021-08-21 19:00:00">19:00</option>
+                                    <option value="2021-08-21 19:15:00">19:15</option>
+                                    <option value="2021-08-21 19:35:00">19:35</option>
+                                    <option value="2021-08-21 21:50:00">21:50</option>
+                                    <option value="2021-08-21 21:50:00">21:55</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <label for="inputTickets"  id="inputTicketsLabel">Количество взрослых билетов</label>
+                                        <input type="number" name="inputTickets" class="form-control" id="inputTickets">
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="inputChildren" id="inputChildrenLabel">Детей до 3 лет (бесплатно):</label>
+                                        <input type="number" name="inputChildren" class="form-control" id="inputChildren">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary" id="calc_btn">Посчитать</button>
+                                <p id="time_validator"></p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="info_block">
+                <p id="trip_info"></p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
